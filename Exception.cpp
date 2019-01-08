@@ -8,7 +8,7 @@ namespace HLib
 {
 
 //辅助初始化
-void Exception::init(const char *message, const char* file, int line) throw()
+void Exception::init(const char *message, const char* file, int line) NO_EXCEPT
 {
     m_message = message ? strdup(message) : NULL;
 
@@ -31,31 +31,31 @@ void Exception::init(const char *message, const char* file, int line) throw()
     }
 }
 
-Exception::Exception() throw()
+Exception::Exception() NO_EXCEPT
     : m_message(NULL), m_location(NULL)
 {}
 
-Exception::Exception(const char* message) throw()
+Exception::Exception(const char* message) NO_EXCEPT
 {
     init(message, NULL, 0);
 }
 
-Exception::Exception(const char* file, int line) throw()
+Exception::Exception(const char* file, int line) NO_EXCEPT
 {
     init(NULL, file, line);
 }
 
-Exception::Exception(const char* message, const char* file, int line) throw()
+Exception::Exception(const char* message, const char* file, int line) NO_EXCEPT
 {
     init(message, file, line);
 }
 
-Exception::Exception(const Exception &except) throw()
+Exception::Exception(const Exception &except) NO_EXCEPT
     : m_message(strdup(except.m_message)),
       m_location(strdup(except.m_location))
 {}
 
-Exception& Exception::operator =(const Exception& except) throw()
+Exception& Exception::operator =(const Exception& except) NO_EXCEPT
 {
     if( this != &except )
     {
@@ -69,7 +69,7 @@ Exception& Exception::operator =(const Exception& except) throw()
     return *this;
 }
 
-Exception::~Exception()
+Exception::~Exception() NO_EXCEPT
 {
     free(m_message);
     free(m_location);
@@ -77,22 +77,22 @@ Exception::~Exception()
 
 
 // 计算异常
-ArithmeticException::ArithmeticException() throw()
+ArithmeticException::ArithmeticException() NO_EXCEPT
     : Exception() {}
 
-ArithmeticException::ArithmeticException(const char* message) throw()
+ArithmeticException::ArithmeticException(const char* message) NO_EXCEPT
     : Exception(message) {}
 
-ArithmeticException::ArithmeticException(const char* file, int line) throw()
+ArithmeticException::ArithmeticException(const char* file, int line) NO_EXCEPT
     : Exception(file, line) {}
 
-ArithmeticException::ArithmeticException(const char *message, const char *file, int line) throw()
+ArithmeticException::ArithmeticException(const char *message, const char *file, int line) NO_EXCEPT
     : Exception(message, file, line) {}
 
-ArithmeticException::ArithmeticException(const ArithmeticException& except) throw()
+ArithmeticException::ArithmeticException(const ArithmeticException& except) NO_EXCEPT
     : Exception(except) {}
 
-ArithmeticException& ArithmeticException::operator =(const ArithmeticException& except) throw()
+ArithmeticException& ArithmeticException::operator =(const ArithmeticException& except) NO_EXCEPT
 {
     Exception::operator = (except);
 
@@ -101,22 +101,22 @@ ArithmeticException& ArithmeticException::operator =(const ArithmeticException& 
 
 
 // 空指针异常子类
-NullPointerException::NullPointerException() throw()
+NullPointerException::NullPointerException() NO_EXCEPT
     : Exception() {}
 
-NullPointerException::NullPointerException(const char* message) throw()
+NullPointerException::NullPointerException(const char* message) NO_EXCEPT
     : Exception(message) {}
 
-NullPointerException::NullPointerException(const char* file, int line) throw()
+NullPointerException::NullPointerException(const char* file, int line) NO_EXCEPT
     : Exception(file, line) {}
 
-NullPointerException::NullPointerException(const char *message, const char *file, int line) throw()
+NullPointerException::NullPointerException(const char *message, const char *file, int line) NO_EXCEPT
     : Exception(message, file, line) {}
 
-NullPointerException::NullPointerException(const NullPointerException& except) throw()
+NullPointerException::NullPointerException(const NullPointerException& except) NO_EXCEPT
     : Exception(except) {}
 
-NullPointerException& NullPointerException::operator =(const NullPointerException& except) throw()
+NullPointerException& NullPointerException::operator =(const NullPointerException& except) NO_EXCEPT
 {
     Exception::operator = (except);
 
@@ -125,22 +125,22 @@ NullPointerException& NullPointerException::operator =(const NullPointerExceptio
 
 
 // 越界异常子类
-IndexOutOfBoundsException::IndexOutOfBoundsException() throw()
+IndexOutOfBoundsException::IndexOutOfBoundsException() NO_EXCEPT
     : Exception() {}
 
-IndexOutOfBoundsException::IndexOutOfBoundsException(const char* message) throw()
+IndexOutOfBoundsException::IndexOutOfBoundsException(const char* message) NO_EXCEPT
     : Exception(message) {}
 
-IndexOutOfBoundsException::IndexOutOfBoundsException(const char* file, int line) throw()
+IndexOutOfBoundsException::IndexOutOfBoundsException(const char* file, int line) NO_EXCEPT
     : Exception(file, line) {}
 
-IndexOutOfBoundsException::IndexOutOfBoundsException(const char *message, const char *file, int line) throw()
+IndexOutOfBoundsException::IndexOutOfBoundsException(const char *message, const char *file, int line) NO_EXCEPT
     : Exception(message, file, line) {}
 
-IndexOutOfBoundsException::IndexOutOfBoundsException(const IndexOutOfBoundsException& except) throw()
+IndexOutOfBoundsException::IndexOutOfBoundsException(const IndexOutOfBoundsException& except) NO_EXCEPT
     : Exception(except) {}
 
-IndexOutOfBoundsException& IndexOutOfBoundsException::operator =(const IndexOutOfBoundsException& except) throw()
+IndexOutOfBoundsException& IndexOutOfBoundsException::operator =(const IndexOutOfBoundsException& except) NO_EXCEPT
 {
     Exception::operator = (except);
 
@@ -149,22 +149,22 @@ IndexOutOfBoundsException& IndexOutOfBoundsException::operator =(const IndexOutO
 
 
 // 内存不足异常子类
-NoEnoughMemoryException::NoEnoughMemoryException() throw()
+NoEnoughMemoryException::NoEnoughMemoryException() NO_EXCEPT
     : Exception() {}
 
-NoEnoughMemoryException::NoEnoughMemoryException(const char* message) throw()
+NoEnoughMemoryException::NoEnoughMemoryException(const char* message) NO_EXCEPT
     : Exception(message) {}
 
-NoEnoughMemoryException::NoEnoughMemoryException(const char* file, int line) throw()
+NoEnoughMemoryException::NoEnoughMemoryException(const char* file, int line) NO_EXCEPT
     : Exception(file, line) {}
 
-NoEnoughMemoryException::NoEnoughMemoryException(const char *message, const char *file, int line) throw()
+NoEnoughMemoryException::NoEnoughMemoryException(const char *message, const char *file, int line) NO_EXCEPT
     : Exception(message, file, line) {}
 
-NoEnoughMemoryException::NoEnoughMemoryException(const NoEnoughMemoryException& except) throw()
+NoEnoughMemoryException::NoEnoughMemoryException(const NoEnoughMemoryException& except) NO_EXCEPT
     : Exception(except) {}
 
-NoEnoughMemoryException& NoEnoughMemoryException::operator =(const NoEnoughMemoryException& except) throw()
+NoEnoughMemoryException& NoEnoughMemoryException::operator =(const NoEnoughMemoryException& except) NO_EXCEPT
 {
     Exception::operator = (except);
 
@@ -173,22 +173,22 @@ NoEnoughMemoryException& NoEnoughMemoryException::operator =(const NoEnoughMemor
 
 
 // 参数错误异常子类
-InvalidParameterException::InvalidParameterException() throw()
+InvalidParameterException::InvalidParameterException() NO_EXCEPT
     : Exception() {}
 
-InvalidParameterException::InvalidParameterException(const char* message) throw()
+InvalidParameterException::InvalidParameterException(const char* message) NO_EXCEPT
     : Exception(message) {}
 
-InvalidParameterException::InvalidParameterException(const char* file, int line) throw()
+InvalidParameterException::InvalidParameterException(const char* file, int line) NO_EXCEPT
     : Exception(file, line) {}
 
-InvalidParameterException::InvalidParameterException(const char *message, const char *file, int line) throw()
+InvalidParameterException::InvalidParameterException(const char *message, const char *file, int line) NO_EXCEPT
     : Exception(message, file, line) {}
 
-InvalidParameterException::InvalidParameterException(const InvalidParameterException& except) throw()
+InvalidParameterException::InvalidParameterException(const InvalidParameterException& except) NO_EXCEPT
     : Exception(except) {}
 
-InvalidParameterException& InvalidParameterException::operator =(const InvalidParameterException& except) throw()
+InvalidParameterException& InvalidParameterException::operator =(const InvalidParameterException& except) NO_EXCEPT
 {
     Exception::operator = (except);
 
@@ -197,22 +197,22 @@ InvalidParameterException& InvalidParameterException::operator =(const InvalidPa
 
 
 // 非法操作异常子类
-InvalidOperationException::InvalidOperationException() throw()
+InvalidOperationException::InvalidOperationException() NO_EXCEPT
     : Exception() {}
 
-InvalidOperationException::InvalidOperationException(const char* message) throw()
+InvalidOperationException::InvalidOperationException(const char* message) NO_EXCEPT
     : Exception(message) {}
 
-InvalidOperationException::InvalidOperationException(const char* file, int line) throw()
+InvalidOperationException::InvalidOperationException(const char* file, int line) NO_EXCEPT
     : Exception(file, line) {}
 
-InvalidOperationException::InvalidOperationException(const char *message, const char *file, int line) throw()
+InvalidOperationException::InvalidOperationException(const char *message, const char *file, int line) NO_EXCEPT
     : Exception(message, file, line) {}
 
-InvalidOperationException::InvalidOperationException(const InvalidOperationException& except) throw()
+InvalidOperationException::InvalidOperationException(const InvalidOperationException& except) NO_EXCEPT
     : Exception(except) {}
 
-InvalidOperationException& InvalidOperationException::operator =(const InvalidOperationException& except) throw()
+InvalidOperationException& InvalidOperationException::operator =(const InvalidOperationException& except) NO_EXCEPT
 {
     Exception::operator = (except);
 

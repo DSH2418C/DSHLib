@@ -21,10 +21,10 @@ public:
     SmartPointer(const SmartPointer<T>& obj);
     SmartPointer<T>& operator = (const SmartPointer<T>& obj);
 
-    T* operator -> () const throw() { return m_ptr; }
-    T operator * () const throw() { return *m_ptr; }
-    bool isNull() const throw() { return !m_ptr; }
-    T* getPtr()const throw() { return m_ptr; }
+    T* operator -> () const NO_EXCEPT { return m_ptr; }
+    T operator * () const NO_EXCEPT { return *m_ptr; }
+    bool isNull() const NO_EXCEPT { return !m_ptr; }
+    T* getPtr()const NO_EXCEPT { return m_ptr; }
 
     virtual ~SmartPointer();
 };

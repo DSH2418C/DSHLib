@@ -6,6 +6,7 @@
 namespace HLib
 {
 
+
 #ifndef THROW_EXCEPTION
 #define THROW_EXCEPTION(excep, msg) (throw excep(msg, __FILE__, __LINE__))
 #endif
@@ -19,20 +20,20 @@ protected:
     char* m_message;
     char* m_location;
 
-    void init(const char* message, const char* file, int line) throw();
+    void init(const char* message, const char* file, int line) NO_EXCEPT;
 
 public:
-    Exception() throw();
-    Exception(const char* message) throw();
-    Exception(const char* file, int line) throw();
-    Exception(const char* message, const char* file, int line) throw();
-    Exception(const Exception& except) throw();
-    Exception& operator = (const Exception& except) throw();
+    Exception() NO_EXCEPT;
+    Exception(const char* message) NO_EXCEPT;
+    Exception(const char* file, int line) NO_EXCEPT;
+    Exception(const char* message, const char* file, int line) NO_EXCEPT;
+    Exception(const Exception& except) NO_EXCEPT;
+    Exception& operator = (const Exception& except) NO_EXCEPT;
 
-    virtual const char* message() const throw() { return m_message; }
-    virtual const char* location() const throw() { return m_location; }
+    virtual const char* message() const NO_EXCEPT { return m_message; }   // 错误信息
+    virtual const char* location() const NO_EXCEPT { return m_location; } // 具体位置
 
-    virtual ~Exception() = 0;
+    virtual ~Exception()NO_EXCEPT =  0;
 };
 
 
@@ -40,12 +41,12 @@ public:
 class ArithmeticException : public Exception
 {
 public:
-    ArithmeticException() throw();
-    ArithmeticException(const char* message) throw();
-    ArithmeticException(const char* file, int line) throw();
-    ArithmeticException(const char* message, const char* file, int line) throw();
-    ArithmeticException(const ArithmeticException& except) throw();
-    ArithmeticException& operator = (const ArithmeticException& except) throw();
+    ArithmeticException() NO_EXCEPT;
+    ArithmeticException(const char* message) NO_EXCEPT;
+    ArithmeticException(const char* file, int line) NO_EXCEPT;
+    ArithmeticException(const char* message, const char* file, int line) NO_EXCEPT;
+    ArithmeticException(const ArithmeticException& except) NO_EXCEPT;
+    ArithmeticException& operator = (const ArithmeticException& except) NO_EXCEPT;
 };
 
 
@@ -53,12 +54,12 @@ public:
 class NullPointerException : public Exception
 {
 public:
-    NullPointerException() throw();
-    NullPointerException(const char* message) throw();
-    NullPointerException(const char* file, int line) throw();
-    NullPointerException(const char* message, const char* file, int line) throw();
-    NullPointerException(const NullPointerException& except) throw();
-    NullPointerException& operator = (const NullPointerException& except) throw();
+    NullPointerException() NO_EXCEPT;
+    NullPointerException(const char* message) NO_EXCEPT;
+    NullPointerException(const char* file, int line) NO_EXCEPT;
+    NullPointerException(const char* message, const char* file, int line) NO_EXCEPT;
+    NullPointerException(const NullPointerException& except) NO_EXCEPT;
+    NullPointerException& operator = (const NullPointerException& except) NO_EXCEPT;
 };
 
 
@@ -66,12 +67,12 @@ public:
 class IndexOutOfBoundsException : public Exception
 {
 public:
-    IndexOutOfBoundsException() throw();
-    IndexOutOfBoundsException(const char* message) throw();
-    IndexOutOfBoundsException(const char* file, int line) throw();
-    IndexOutOfBoundsException(const char* message, const char* file, int line) throw();
-    IndexOutOfBoundsException(const IndexOutOfBoundsException& except) throw();
-    IndexOutOfBoundsException& operator = (const IndexOutOfBoundsException& except) throw();
+    IndexOutOfBoundsException() NO_EXCEPT;
+    IndexOutOfBoundsException(const char* message) NO_EXCEPT;
+    IndexOutOfBoundsException(const char* file, int line) NO_EXCEPT;
+    IndexOutOfBoundsException(const char* message, const char* file, int line) NO_EXCEPT;
+    IndexOutOfBoundsException(const IndexOutOfBoundsException& except) NO_EXCEPT;
+    IndexOutOfBoundsException& operator = (const IndexOutOfBoundsException& except) NO_EXCEPT;
 };
 
 
@@ -79,12 +80,12 @@ public:
 class NoEnoughMemoryException : public Exception
 {
 public:
-    NoEnoughMemoryException() throw();
-    NoEnoughMemoryException(const char* message) throw();
-    NoEnoughMemoryException(const char* file, int line) throw();
-    NoEnoughMemoryException(const char* message, const char* file, int line) throw();
-    NoEnoughMemoryException(const NoEnoughMemoryException& except) throw();
-    NoEnoughMemoryException& operator = (const NoEnoughMemoryException& except) throw();
+    NoEnoughMemoryException() NO_EXCEPT;
+    NoEnoughMemoryException(const char* message) NO_EXCEPT;
+    NoEnoughMemoryException(const char* file, int line) NO_EXCEPT;
+    NoEnoughMemoryException(const char* message, const char* file, int line) NO_EXCEPT;
+    NoEnoughMemoryException(const NoEnoughMemoryException& except) NO_EXCEPT;
+    NoEnoughMemoryException& operator = (const NoEnoughMemoryException& except) NO_EXCEPT;
 };
 
 
@@ -92,12 +93,12 @@ public:
 class InvalidParameterException : public Exception
 {
 public:
-    InvalidParameterException() throw();
-    InvalidParameterException(const char* message) throw();
-    InvalidParameterException(const char* file, int line) throw();
-    InvalidParameterException(const char* message, const char* file, int line) throw();
-    InvalidParameterException(const InvalidParameterException& except) throw();
-    InvalidParameterException& operator = (const InvalidParameterException& except) throw();
+    InvalidParameterException() NO_EXCEPT;
+    InvalidParameterException(const char* message) NO_EXCEPT;
+    InvalidParameterException(const char* file, int line) NO_EXCEPT;
+    InvalidParameterException(const char* message, const char* file, int line) NO_EXCEPT;
+    InvalidParameterException(const InvalidParameterException& except) NO_EXCEPT;
+    InvalidParameterException& operator = (const InvalidParameterException& except) NO_EXCEPT;
 };
 
 
@@ -105,15 +106,15 @@ public:
 class InvalidOperationException : public Exception
 {
 public:
-    InvalidOperationException() throw();
-    InvalidOperationException(const char* message) throw();
-    InvalidOperationException(const char* file, int line) throw();
-    InvalidOperationException(const char* message, const char* file, int line) throw();
-    InvalidOperationException(const InvalidOperationException& except) throw();
-    InvalidOperationException& operator = (const InvalidOperationException& except) throw();
+    InvalidOperationException() NO_EXCEPT;
+    InvalidOperationException(const char* message) NO_EXCEPT;
+    InvalidOperationException(const char* file, int line) NO_EXCEPT;
+    InvalidOperationException(const char* message, const char* file, int line) NO_EXCEPT;
+    InvalidOperationException(const InvalidOperationException& except) NO_EXCEPT;
+    InvalidOperationException& operator = (const InvalidOperationException& except) NO_EXCEPT;
 };
 
-} // HLib
 
+} // HLib
 
 #endif // EXCEPTION_H
